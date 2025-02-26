@@ -1,0 +1,55 @@
+curl -X POST http://localhost:3000/api/inscriptions \
+-H "Content-Type: application/json" \
+-d '{"nom": "Doe", "prenom": "Jane", "username": "janedoe", "email": "janedoe@example.com", "password": "password123", "role": "user"}'
+
+curl -X DELETE http://localhost:3000/api/inscriptions/2
+
+//Route de tests
+//Route pour S'inscrire 
+
+curl -X POST http://localhost:3000/api/inscriptions \
+-H "Content-Type: application/json" \
+-d '{"nom": "maya", "prenom": "maymay", "username": "lakestone7", "email": "kailakestone@cmail.com", "password": "1aslk23", "role": "student"}'
+
+//Route pour  connexion et gestion de session 
+curl -X POST http://localhost:3000/api/connexion \
+-H "Content-Type: application/json" \
+-d '{"email": "kailakestone@cmail.com", "password": "1aslk23"}'
+
+//Deconnexion/ supression de cookies
+curl -X POST http://localhost:3000/api/deconnexion
+
+//Créer un cours
+curl -X POST http://localhost:3000/api/courses \
+-H "Content-Type: application/json" \
+-d '{"title": "Node.js", "description": "Cours sur les bases de Node.js", "admin_id": 1}'
+
+
+//Modifier un cours 
+curl -X PUT http://localhost:3000/api/courses/18 \
+-H "Content-Type: application/json" \
+-d '{"title": "Node.js", "description": "Cours sur les fonctionnalités avancées de Node.js"}'
+
+
+//Supprimer un cours
+curl -X DELETE http://localhost:3000/api/courses/18
+
+//S'inscrire a un cours
+curl -X POST http://localhost:3000/api/inscriptionsCours \
+-H "Content-Type: application/json" \
+-d '{
+  "nom": "kaba latifa",
+  "prenom": "meriem",
+  "identifiant": "84321",
+  "email": "lakestone12345@gmail.com",
+  "password": "mdr"
+}'
+
+//afficher toutes les etudiants inscrit a un cours
+curl -X GET http://localhost:3000/api/inscriptionsCours
+
+//afficher les cours avec pagination
+curl -X GET "http://localhost:3000/api/courses?page=1&limit=5"
+
+//rechercher par mot clé des titres/ou inscriptions
+curl -X GET "http://localhost:3000/api/courses/search?q=Application web"
